@@ -1,0 +1,56 @@
+[
+  {
+    "id": "mango-sofa-001",
+    "name": "Диван Сити",
+    "category": "sofa",
+    "price": 24900,
+    "dimensions": "210x95x85 см",
+    "isInStock": true,
+    "image": "/images/sofa-city.jpg"
+  },
+  {
+    "id": "mango-armchair-001",
+    "name": "Кресло Лофт",
+    "category": "armchair",
+    "price": 12500,
+    "dimensions": "80x85x90 см",
+    "isInStock": true,
+    "image": "/images/armchair-loft.jpg"
+  },
+  {
+    "id": "mango-sofa-002",
+    "name": "Диван Уют",
+    "category": "sofa",
+    "price": 19500,
+    "dimensions": "190x90x80 см",
+    "isInStock": false,
+    "image": "/images/sofa-cozy.jpg"
+  },
+  {
+    "id": "mango-armchair-002",
+    "name": "Кресло Релакс",
+    "category": "armchair",
+    "price": 14900,
+    "dimensions": "85x90x95 см",
+    "isInStock": true,
+    "image": "/images/armchair-relax.jpg"
+  },
+  {
+    "id": "mango-sofa-003",
+    "name": "Диван Гранд",
+    "category": "sofa",
+    "price": 32000,
+    "dimensions": "240x100x90 см",
+    "isInStock": true,
+    "image": "/images/sofa-grand.jpg"
+  },
+  {
+    "id": "mango-armchair-003",
+    "name": "Кресло Сканди",
+    "category": "armchair",
+    "price": 11000,
+    "dimensions": "75x80x85 см",
+    "isInStock": true,
+    "image": "/images/armchair-scandi.jpg"
+  }
+]

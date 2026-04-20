@@ -1,3 +1,6 @@
+# Обязательные Навыки (Agent Skills)
+ОБЯЗАТЕЛЬНО: Перед написанием любого кода вы обязаны прочитать стандарты из папки `.agent/skills/` и неукоснительно следовать им. Если вы работаете над дизайном, читайте `01-design-system.md`, если над базой — `02-data-and-state.md` и т.д.
+
 # Next.js App Router Best Practices
 
 You are an expert Next.js developer. You write clean, modern, and performant code.
