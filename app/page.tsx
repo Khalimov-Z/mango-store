@@ -38,6 +38,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Benefits Bar */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { icon: "🚚", title: "Бесплатная доставка", desc: "При заказе от 15 000 ₽" },
+          { icon: "🛡️", title: "Гарантия 1 год", desc: "На всю мебель в каталоге" },
+          { icon: "↩️", title: "Возврат 30 дней", desc: "Если что-то не подошло" },
+          { icon: "💬", title: "Поддержка в WhatsApp", desc: "Ответим за 15 минут" },
+        ].map((item) => (
+          <div key={item.title} className="bg-white rounded-2xl p-5 border border-stone-100 shadow-sm flex flex-col items-center text-center gap-2 hover:-translate-y-1 transition-transform duration-300">
+            <span className="text-3xl">{item.icon}</span>
+            <p className="font-bold text-stone-800 text-sm leading-tight">{item.title}</p>
+            <p className="text-xs text-stone-400">{item.desc}</p>
+          </div>
+        ))}
+      </section>
+
       {/* Catalog Section */}
       <section id="catalog" className="scroll-mt-24">
         <div className="mb-8 flex flex-col md:flex-row justify-between items-end gap-4">
