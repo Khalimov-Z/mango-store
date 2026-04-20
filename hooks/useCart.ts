@@ -10,74 +10,74 @@ export interface CartItem {
   quantity: number;
 }
 
+const CART_KEY = "mango_cart";
+const CART_EVENT = "cart-changed";
+
 export function useCart() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
+  // Load from localStorage and subscribe to cross-component updates
   useEffect(() => {
     setIsMounted(true);
-    const storedCart = localStorage.getItem("mango_cart");
-    if (storedCart) {
-      try {
-        setItems(JSON.parse(storedCart));
-      } catch (e) {
-        console.error("Failed to parse cart", e);
+
+    const load = () => {
+      const stored = localStorage.getItem(CART_KEY);
+      if (stored) {
+        try { setItems(JSON.parse(stored)); } catch { /* ignore */ }
+      } else {
+        setItems([]);
       }
-    }
+    };
+
+    load(); // initial load
+
+    // Listen for updates from other useCart instances in the same tab
+    window.addEventListener(CART_EVENT, load);
+    return () => window.removeEventListener(CART_EVENT, load);
   }, []);
 
   const saveCart = (newItems: CartItem[]) => {
     setItems(newItems);
-    localStorage.setItem("mango_cart", JSON.stringify(newItems));
+    localStorage.setItem(CART_KEY, JSON.stringify(newItems));
+    // Notify all other useCart instances in the same tab
+    window.dispatchEvent(new Event(CART_EVENT));
   };
 
-  const addToCart = (product: any) => {
-    const existing = items.find((item) => item.id === product.id);
+  const addToCart = (product: Omit<CartItem, "quantity">) => {
+    const current = JSON.parse(localStorage.getItem(CART_KEY) || "[]") as CartItem[];
+    const existing = current.find((item) => item.id === product.id);
     if (existing) {
-      saveCart(
-        items.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
+      saveCart(current.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      ));
     } else {
-      saveCart([...items, { ...product, quantity: 1 }]);
+      saveCart([...current, { ...product, quantity: 1 }]);
     }
   };
 
   const removeFromCart = (id: string) => {
-    saveCart(items.filter((item) => item.id !== id));
+    const current = JSON.parse(localStorage.getItem(CART_KEY) || "[]") as CartItem[];
+    saveCart(current.filter((item) => item.id !== id));
   };
 
   const updateQuantity = (id: string, delta: number) => {
-    const existing = items.find((item) => item.id === id);
+    const current = JSON.parse(localStorage.getItem(CART_KEY) || "[]") as CartItem[];
+    const existing = current.find((item) => item.id === id);
     if (!existing) return;
-    
     if (existing.quantity + delta <= 0) {
-      removeFromCart(id);
+      saveCart(current.filter((item) => item.id !== id));
     } else {
-      saveCart(
-        items.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + delta } : item
-        )
-      );
+      saveCart(current.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + delta } : item
+      ));
     }
   };
 
-  const clearCart = () => {
-    saveCart([]);
-  };
+  const clearCart = () => saveCart([]);
 
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  return {
-    items,
-    totalPrice,
-    totalItems,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
-    isMounted
-  };
+  return { items, totalPrice, totalItems, addToCart, removeFromCart, updateQuantity, clearCart, isMounted };
 }
