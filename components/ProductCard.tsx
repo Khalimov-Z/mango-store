@@ -16,7 +16,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { addToCart, items, isMounted } = useCart();
+  const { addToCart, removeFromCart, items, isMounted } = useCart();
   
   // Safely find the item if mounted, else ignore (avoids hydration mismatch on initial render)
   const cartItem = isMounted ? items.find((item) => item.id === product.id) : undefined;
@@ -28,6 +28,7 @@ export function ProductCard({ product }: ProductCardProps) {
           src={product.image}
           alt={product.name}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover"
         />
         {!product.isInStock && (
@@ -49,12 +50,12 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
           {product.isInStock ? (
             <Button 
-              onClick={() => addToCart(product)} 
+              onClick={() => cartItem ? removeFromCart(product.id) : addToCart(product)} 
               variant={cartItem ? "outline" : "primary"}
               size="sm"
-              className={cartItem ? "border-orange-200 bg-orange-50" : ""}
+              className={cartItem ? "border-red-200 bg-red-50 text-red-500 hover:bg-red-100" : ""}
             >
-              {cartItem ? `В корзине (${cartItem.quantity})` : "В корзину"}
+              {cartItem ? "Убрать из корзины" : "В корзину"}
             </Button>
           ) : (
             <Button disabled variant="outline" size="sm">

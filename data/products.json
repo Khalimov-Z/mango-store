@@ -52,5 +52,23 @@
     "dimensions": "75x80x85 см",
     "isInStock": true,
     "image": "/images/armchair-scandi.jpg"
+  },
+  {
+    "id": "mango-sofa-004",
+    "name": "Диван Бархат",
+    "category": "sofa",
+    "price": 27500,
+    "dimensions": "220x98x88 см",
+    "isInStock": true,
+    "image": "/images/sofa-error.jpg"
+  },
+  {
+    "id": "mango-armchair-004",
+    "name": "Кресло Классик",
+    "category": "armchair",
+    "price": 16900,
+    "dimensions": "90x95x100 см",
+    "isInStock": true,
+    "image": "/images/armchair-classic.jpg"
   }
 ]

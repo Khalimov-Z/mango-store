@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
           <Link href="/" className="font-bold text-2xl text-orange-500 tracking-tight">
-            Mango.
+            Mango
           </Link>
           <p className="text-stone-500 mt-2 text-sm max-w-sm">
             Бюджетная и стильная мебель для вашего дома. Мы создаем уют доступным.
@@ -14,7 +14,6 @@ export function Footer() {
         </div>
 
         <nav className="flex gap-6 text-sm font-medium">
-          <Link href="/" className="text-stone-500 hover:text-orange-500 transition-colors">Каталог</Link>
           <Link href="/quiz" className="text-stone-500 hover:text-orange-500 transition-colors">Квиз</Link>
           <Link href="/contacts" className="text-stone-500 hover:text-orange-500 transition-colors">Контакты</Link>
         </nav>
