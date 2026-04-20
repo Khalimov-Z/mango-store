@@ -39,9 +39,6 @@ export function NavBar() {
               </span>
             </Link>
             <nav className="hidden md:flex gap-6">
-              <Link href="/" className="text-stone-600 hover:text-orange-500 font-medium transition-colors">
-                Каталог
-              </Link>
               <Link href="/quiz" className="text-stone-600 hover:text-orange-500 font-medium transition-colors">
                 Что мне подойдет?
               </Link>
