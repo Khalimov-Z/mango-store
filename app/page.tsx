@@ -66,6 +66,60 @@ export default function Home() {
         {/* Pass initial data from server JSON directly to Client Component */}
         <Catalog initialProducts={products} />
       </section>
+
+      {/* Reviews Section */}
+      <section className="space-y-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-stone-900">Что говорят наши клиенты</h2>
+          <p className="text-stone-500 mt-2">Больше 500 довольных семей уже обустроили свой дом с нами</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              name: "Анна К.",
+              city: "Москва",
+              rating: 5,
+              text: "Заказала диван «Городской уют» — он просто великолепен! Качество намного лучше, чем ожидала за эту цену. Менеджер в WhatsApp ответил моментально и помог с выбором цвета.",
+              avatar: "А",
+            },
+            {
+              name: "Дмитрий М.",
+              city: "Санкт-Петербург",
+              rating: 5,
+              text: "Брали кресло в кабинет. Пришло быстро, упаковано идеально. Сижу в нём уже 3 месяца — спина не болит! Однозначно буду рекомендовать друзьям.",
+              avatar: "Д",
+            },
+            {
+              name: "Светлана Г.",
+              city: "Краснодар",
+              rating: 5,
+              text: "Прошла квиз на сайте — мне предложили именно то, что я хотела. Оформление через WhatsApp прошло за 5 минут. Очень удобно и быстро!",
+              avatar: "С",
+            },
+          ].map((review) => (
+            <div key={review.name} className="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-300">
+              <div className="flex text-orange-400 gap-0.5">
+                {Array.from({ length: review.rating }).map((_, i) => (
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <p className="text-stone-600 leading-relaxed flex-1 italic">«{review.text}»</p>
+              <div className="flex items-center gap-3 pt-2 border-t border-stone-100">
+                <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 font-bold flex items-center justify-center shrink-0">
+                  {review.avatar}
+                </div>
+                <div>
+                  <p className="font-bold text-stone-800 text-sm">{review.name}</p>
+                  <p className="text-xs text-stone-400">{review.city}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
