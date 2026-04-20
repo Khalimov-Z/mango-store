@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+// No client-side imports needed
 
 export default function ContactsPage() {
   return (
@@ -15,9 +15,9 @@ export default function ContactsPage() {
           </div>
           <h3 className="font-bold text-xl text-stone-900">По номеру телефона (WhatsApp)</h3>
           <p className="text-stone-500 flex-1">+7 (999) 000-12-34</p>
-          <Button variant="outline" className="w-full border-green-500 text-green-600 hover:bg-green-50" onClick={() => window.open("https://wa.me/79990001234", "_blank")}>
+          <a href="https://wa.me/79990001234" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl h-11 px-6 text-base w-full border-2 border-green-500 text-green-600 hover:bg-green-50">
             Написать в WhatsApp
-          </Button>
+          </a>
         </div>
 
         <div className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col items-center text-center space-y-4 hover:-translate-y-1 transition-transform">
@@ -26,9 +26,9 @@ export default function ContactsPage() {
           </div>
           <h3 className="font-bold text-xl text-stone-900">По электронной почте</h3>
           <p className="text-stone-500 flex-1">hello@mango-store.ru</p>
-          <Button variant="primary" className="w-full" onClick={() => window.location.href="mailto:hello@mango-store.ru"}>
+          <a href="mailto:hello@mango-store.ru" className="inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl h-11 px-6 text-base w-full bg-orange-500 text-stone-50 hover:bg-orange-600 shadow-md">
             Отправить письмо
-          </Button>
+          </a>
         </div>
       </div>
     </div>
