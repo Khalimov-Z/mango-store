@@ -1,65 +1,55 @@
-import Image from "next/image";
+import { Catalog } from "@/components/Catalog";
+import products from "@/data/products.json";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="space-y-12">
+      {/* Hero Banner */}
+      <section className="bg-orange-50 rounded-3xl p-8 sm:p-12 md:p-16 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 border border-orange-100 shadow-sm relative overflow-hidden">
+        {/* Decorative circle */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-orange-200 rounded-full blur-3xl opacity-50 pointer-events-none" />
+        
+        <div className="flex-1 space-y-6 relative z-10">
+          <div className="inline-block px-4 py-1.5 bg-orange-100 text-orange-600 font-bold text-xs rounded-full uppercase tracking-widest mb-2">
+            Новая коллекция
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
+            Стильная мебель <br /> не должна быть <br /> 
+            <span className="text-orange-500">дорогой.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg text-stone-600 max-w-xl mx-auto md:mx-0 leading-relaxed">
+            Обустройте свой дом нашими уютными диванами и стильными креслами по цене, которая вас действительно порадует.
           </p>
+          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <Link href="#catalog">
+              <Button size="lg" className="w-full sm:w-auto shadow-orange-500/20 shadow-lg">Смотреть каталог</Button>
+            </Link>
+            <Link href="/quiz">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto bg-white hover:bg-orange-50">Пройти квиз</Button>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Dummy image block for aesthetic layout balance on desktop */}
+        <div className="hidden md:block w-72 h-72 bg-gradient-to-tr from-orange-200 to-orange-100 rounded-full shrink-0 relative z-10 shadow-inner flex items-center justify-center text-orange-400 text-opacity-50">
+           <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18v3h3v-3h10v3h3v-6H4v3zm15-8h3v3h-3v-3zM2 10h3v3H2v-3zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"/></svg>
         </div>
-      </main>
+      </section>
+
+      {/* Catalog Section */}
+      <section id="catalog" className="scroll-mt-24">
+        <div className="mb-8 flex flex-col md:flex-row justify-between items-end gap-4">
+          <div>
+            <h2 className="text-3xl font-bold text-stone-900">Популярные модели</h2>
+            <p className="text-stone-500 mt-2">Выберите идеальную мебель для вашего отдыха</p>
+          </div>
+        </div>
+        
+        {/* Pass initial data from server JSON directly to Client Component */}
+        <Catalog initialProducts={products} />
+      </section>
     </div>
   );
 }
