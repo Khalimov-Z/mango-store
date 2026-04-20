@@ -120,6 +120,52 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* How it works */}
+      <section className="bg-orange-50 rounded-3xl p-8 sm:p-12 border border-orange-100 space-y-10">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-stone-900">Как сделать заказ?</h2>
+          <p className="text-stone-500 mt-2">Всего 3 простых шага — и новая мебель уже едет к вам</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          {/* Connector line (desktop only) */}
+          <div className="hidden md:block absolute top-8 left-1/4 right-1/4 h-0.5 bg-orange-200 z-0" />
+
+          {[
+            {
+              step: "01",
+              icon: "🛋️",
+              title: "Выберите мебель",
+              desc: "Просмотрите каталог или пройдите наш квиз — и мы сами подберём идеальный вариант под ваш интерьер и бюджет.",
+            },
+            {
+              step: "02",
+              icon: "💬",
+              title: "Напишите нам",
+              desc: "Нажмите «Оформить заказ» — и мы сформируем готовое сообщение для WhatsApp. Менеджер подтвердит наличие и уточнит детали.",
+            },
+            {
+              step: "03",
+              icon: "🚚",
+              title: "Получите доставку",
+              desc: "Согласуем удобное время. Доставим, соберём и установим мебель на место. Вам останется только наслаждаться уютом!",
+            },
+          ].map((item) => (
+            <div key={item.step} className="relative z-10 flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-orange-100 flex items-center justify-center text-3xl">
+                {item.icon}
+              </div>
+              <div className="absolute -top-2 -right-2 md:static w-7 h-7 bg-orange-500 text-white text-xs font-black rounded-full flex items-center justify-center md:hidden">
+                {item.step}
+              </div>
+              <span className="hidden md:block text-5xl font-black text-orange-100 leading-none">{item.step}</span>
+              <h3 className="font-bold text-lg text-stone-900">{item.title}</h3>
+              <p className="text-stone-500 text-sm leading-relaxed max-w-xs">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
